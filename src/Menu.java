@@ -38,6 +38,8 @@ public class Menu{
                 try{
                     //Min and Max returned as integer array
                     int[] minMax = Eliot_1.run();
+                    int Min = minMax[0];
+                    int Max = minMax[1];
                 }catch (java.io.IOException ioe){
                     Db.show(ioe.toString());
                 }
