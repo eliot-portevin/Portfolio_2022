@@ -7,6 +7,7 @@ import flanagan.io.Db;
 import flanagan.io.FileNameSelector;
 import flanagan.plot.PlotGraph;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -21,10 +22,12 @@ public class Eliot_1{
         boolean fileExists;
         boolean fileOpened = false;
         double[] Numbers = {};
-        //Creating arrays corresponding to methods
 
-        //noinspection resource
-        fileExists = Files.list(Paths.get("src/Arrays/")).findAny().isPresent();
+        File folder = new File("Arrays/");
+        if (!folder.exists()) {
+            folder = new File("src/Arrays/");
+        }
+        fileExists = Files.list(Paths.get(folder.getAbsolutePath())).findAny().isPresent();
 
         if (fileExists){
             boolean generate = Db.yesNo("You already have an array generated and saved,\n" +
@@ -105,14 +108,19 @@ public class Eliot_1{
     private static double[] Einlesen() {
         double[] numbersArray = {};
         boolean validFile = false;
-        String fileName, filePath = "src/Arrays/";
+        String filePath = "Arrays/";
+        String fileName;
+        //Checking if src folder exists
+        File folder = new File("Arrays/");
+        if (!folder.exists()) {
+            filePath = "src/Arrays/";
+        }
         FileNameSelector fc = new FileNameSelector(filePath);
         fc.setExtension("txt");
         List<String> numbersList = null;
 
         while (!validFile) {
             try {
-                filePath = "src/Arrays/";
                 fileName = fc.selectFile("Please choose your file.\n");
                 filePath += fileName;
                 // load the data from file
@@ -139,9 +147,15 @@ public class Eliot_1{
         return numbersArray;
     }
     private static void Speichern(double[] Numbers) {
+        //Checking if src folder exists
+        File folder = new File("Arrays/");
+        if (!folder.exists()) {
+            folder = new File("src/Arrays/");
+        }
+        System.out.println(folder.getAbsolutePath());
         String fileName = "";
-        StringBuilder filePath = new StringBuilder("src/Arrays/");
-        FileNameSelector fc = new FileNameSelector("src/Arrays/");
+        StringBuilder filePath = new StringBuilder(folder.getPath() + "/");
+        FileNameSelector fc = new FileNameSelector(folder.getPath() + "/");
         fc.setExtension("txt");
         String output = Arrays.toString(Numbers).replace("[", "")
                 .replace("]", "")

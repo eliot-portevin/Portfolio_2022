@@ -5,6 +5,7 @@
 
 import flanagan.io.Db;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -88,7 +89,11 @@ public class Kalender{
         }
     }
     private static List<String> readEvents(){
-        String filePath = "src/CalendarEvents/Dates.txt";
+        String filePath = "CalendarEvents/Dates.txt";
+        File f = new File("CalendarEvents/Dates.txt");
+        if (!f.exists()) {
+            filePath = "src/CalendarEvents/Dates.txt";
+        }
 
         // load the data from file
         List<String> eventsList = new ArrayList<>();
@@ -96,6 +101,7 @@ public class Kalender{
             eventsList = Files.readAllLines(Paths.get(filePath));
         }catch (java.io.IOException ioe){
             Db.show(ioe.toString());
+            System.exit(0);
         }
 
         return eventsList;
@@ -121,7 +127,13 @@ public class Kalender{
                 currentDate));
 
         String output = String.join("\n", eventsList);
-        try (PrintWriter out = new PrintWriter("src/CalendarEvents/Dates.txt")) {
+
+        String filePath = "CalendarEvents/Dates.txt";
+        File f = new File("CalendarEvents/Dates.txt");
+        if (!f.exists()) {
+            filePath = "src/CalendarEvents/Dates.txt";
+        }
+        try (PrintWriter out = new PrintWriter(filePath)) {
             out.println(output);
         }catch(java.io.FileNotFoundException e){
             Db.show(e.toString());
