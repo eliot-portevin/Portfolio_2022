@@ -40,7 +40,7 @@ public class Eliot_1{
                     Numbers = Einlesen();
                     fileOpened = true;
                 } catch(Exception e){
-                    Db.show("Could not read file.");
+                    Db.show("Could not read file, the program is going to be ended.");
                     System.exit(0);
                 }
             }
@@ -72,7 +72,7 @@ public class Eliot_1{
         boolean validInput = false;
 
         while (!validInput){
-            String input = Db.readLine("How many numbers do you wish to generate?", "1000");
+            String input = Db.readLine("How many numbers do you wish to generate?", Integer.toString(size));
             if (input.matches("\\d+")){
                 try {
                     size = Integer.parseInt(input);
@@ -86,7 +86,7 @@ public class Eliot_1{
         while (!validInput){
             String input = Db.readLine("Random numbers will be generated such as:\n\n" +
                     "     -x <= random number <= x\n\n" +
-                    "What is x?", "1000");
+                    "What is x?", Integer.toString(max));
             if (input.matches("\\d+")){
                 try {
                     max = Integer.parseInt(input);
@@ -109,7 +109,7 @@ public class Eliot_1{
         double[] numbersArray = {};
         boolean validFile = false;
         String filePath = "Arrays/";
-        String fileName;
+        String fileName = "";
         //Checking if src folder exists
         File folder = new File("Arrays/");
         if (!folder.exists()) {
@@ -128,6 +128,7 @@ public class Eliot_1{
 
                 validFile = true;
             } catch (Exception ignored) {
+                filePath = filePath.replace(fileName, "");
             }
         }
         // convert arraylist to array

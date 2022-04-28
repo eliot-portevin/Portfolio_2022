@@ -19,7 +19,7 @@ public class Eliot_2{
                 "\nshown how often they were generated. The sum of all" +
                 "\ntheir probabilities should be, if math is correct," +
                 "\nequal to 1.");
-        while (size < 0) {
+        while (size <= 0) {
             size = Db.readInt("How many numbers should be generated?", 1000);
         }
         while (max <= 0){
