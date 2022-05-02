@@ -80,6 +80,5 @@ public class Eliot_2{
                         "Their probability distribution was plotted with PlotGraph from Flanagan.",
                 zufallszahlen.length,
                 max));
-        System.out.println(Arrays.toString(frequencies));
     }
 }
