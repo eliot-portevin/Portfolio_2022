@@ -19,7 +19,7 @@ public class Eliot_2{
                 "\nshown how often they were generated. The sum of all" +
                 "\ntheir probabilities should be, if math is correct," +
                 "\nequal to 1.");
-        while (size <= 0) {
+        while (size <= 0 || size > 100000){  //Too big numbers will cause an erroneous graph
             size = Db.readInt("How many numbers should be generated?", 1000);
         }
         while (max <= 0){
@@ -80,5 +80,6 @@ public class Eliot_2{
                         "Their probability distribution was plotted with PlotGraph from Flanagan.",
                 zufallszahlen.length,
                 max));
+        System.out.println(Arrays.toString(frequencies));
     }
 }
