@@ -22,7 +22,7 @@ public class Menu{
 
         //Menu
         StringBuilder menuOutput = new StringBuilder(String.format("Welcome!\n\n" +
-                "This program is Eliot PORTEVIN's portfolio project.\n" +
+                "This program is Eliot AAAPORTEVIN's portfolio project.\n" +
                 "There are %d methods in this program, which one do\n" +
                 "you wish to run?\n\n", methodsArray.length));
         for (int i=0; i<methodsArray.length; i++){
