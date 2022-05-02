@@ -29,9 +29,9 @@ public class Eliot_4{
                     "Min: 0 cl\n" +
                     "Max: 100 cl", 15)/100;
         }while (T_s<0 || T_s>40){
-            T_s = Db.readInt("What is the current room temperature in °C?\n" +
+            T_s = (int) Math.round(Db.readDouble("What is the current room temperature in °C?\n" +
                     "Min: 0°C \n" +
-                    "Max: 40°C", 20);
+                    "Max: 40°C", 20));
         }while (true){
             try{
                 startTime = sdf.parse(
